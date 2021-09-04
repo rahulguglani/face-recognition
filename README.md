@@ -1,8 +1,14 @@
 # face-recognition
 
-it uses face-recognition library
-use command : pip install face-recognition
-pip install pyttsx3
+requirements:
+
+opencv-python
+
+face-recognition
+
+pyttsx3
+
+numpy
 
 
 this program recognises and mathces face from that present in images folder and greet them with thier name.
