@@ -3,6 +3,7 @@ import numpy as np
 import pyttsx3
 import face_recognition
 import os
+from graphics import *
 # from pyfirmata import Arduino
 path = 'images'
 #board = Arduino('COM7')
@@ -34,7 +35,30 @@ def findEncodings(images):
 encodings = findEncodings(images)
 print('Encoding Complete')
 
-cap = cv2.VideoCapture(1)
+def getcamera():
+    win = GraphWin("Select Camera",500,250)
+    win.setBackground(color_rgb(255,255,255))
+    info = Text(Point(250,20),"press 0 for laptop camera")
+    info1 = Text(Point(250, 80), "press 1 for usb or wifi connected camera")
+    info2 = Text(Point(250, 140), "or enter ip address of camera manually")
+    info.draw(win)
+    info1.draw(win)
+    info2.draw(win)
+
+    responseBox = Entry(Point(250,200),25)
+    responseBox.draw(win)
+
+    win.getMouse()
+    response = responseBox.getText()
+    win.close()
+
+    if(response=='0' or response=='1'):
+        return int(response)
+    return response
+
+
+
+cap = cv2.VideoCapture(getcamera())
 
 while True:
     success, img = cap.read()
